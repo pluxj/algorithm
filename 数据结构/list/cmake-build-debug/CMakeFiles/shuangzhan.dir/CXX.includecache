@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zengzhiyong/算法/数据结构/shuangzhan/list.cpp
+list.h
+/Users/zengzhiyong/算法/数据结构/shuangzhan/list.h
+iostream
+-
+
+/Users/zengzhiyong/算法/数据结构/shuangzhan/list.h
+
+/Users/zengzhiyong/算法/数据结构/shuangzhan/main.cpp
+iostream
+-
+vector
+-
+string
+-
+complex
+-
+list.h
+/Users/zengzhiyong/算法/数据结构/shuangzhan/list.h
+
