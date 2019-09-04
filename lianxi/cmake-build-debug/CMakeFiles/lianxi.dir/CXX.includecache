@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zengzhiyong/算法/lianxi/main.cpp
+iostream
+-
+ctime
+-
+vector
+-
+map
+-
+string
+-
+algorithm
+-
+
