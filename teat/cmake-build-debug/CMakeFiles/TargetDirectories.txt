@@ -1,3 +1,0 @@
-/Users/zengzhiyong/算法/teat/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/zengzhiyong/算法/teat/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/zengzhiyong/算法/teat/cmake-build-debug/CMakeFiles/teat.dir
