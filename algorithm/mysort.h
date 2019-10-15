@@ -25,6 +25,11 @@ namespace myalgoritm
         //自底向上
         void mergeSortBU(int arr[],int n);
 
+
+        //快速排序
+        void QuickSort(int arr[],int n);
+        void __qiucksort(int arr[],int l,int r);
+        int __partition(int arr[],int l,int r);
     };
     
 } // namespace algoritm

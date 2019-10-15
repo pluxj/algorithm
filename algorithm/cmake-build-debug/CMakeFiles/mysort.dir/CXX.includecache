@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zengzhiyong/算法/algorithm/mysort.cpp
+mysort.h
+/Users/zengzhiyong/算法/algorithm/mysort.h
+
+/Users/zengzhiyong/算法/algorithm/mysort.h
+iostream
+-
+vector
+-
+string
+-
+
