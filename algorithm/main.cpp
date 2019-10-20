@@ -7,6 +7,7 @@
 #include <string>
 #include "mysort.h"
 #include "SortTest.h"
+#include "MaxPQ.h"
 using namespace std;
 using namespace myalgoritm;
 void arrPrint(int arr[],int n){
@@ -30,26 +31,29 @@ int main() {
 //    vector<double> val = new vector<double>();
 //    string cumilater = "3 + 2";
     CSort *sort1 = new CSort();
+    MaxPQ *maxPQ = new MaxPQ();
     int n = 100;
     int *arr = new int[100];
 
     for(int i = 0;i < 100;++i)
     {
         int nrand = (random() % 100 )+ 51;
-        arr[i] = nrand;
+  //      arr[i] = nrand;
+        maxPQ->insert(nrand);
     }
-
-    arrPrint(arr,100);
-
-    //TEST QUITSORT
- //   sort1->QuickSort(arr,100);
-
-    //TEST SLECTSORT
-    sort1->MergeSort(arr,100);
-    if(IsSort(arr,100))
-        std::cout<< " is sort" << std::endl;
-    else
-        std::cout<< " is not sort" << std::endl;
+    //TEST MAXPQ
+    for(int i = 0;i < 100;++i)
+    {
+        std::cout << maxPQ->delMax() << std::endl;
+    }
+//    arrPrint(arr,100);
+//
+//
+//    sort1->MergeSort(arr,100);
+//    if(IsSort(arr,100))
+//        std::cout<< " is sort" << std::endl;
+//    else
+//        std::cout<< " is not sort" << std::endl;
 
    // arrPrint(arr,100);
 

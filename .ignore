@@ -7,3 +7,6 @@
 *.db
 *.code-workspace
 *.DS_Store
+*.xml
+*.cbp
+cmake-build-debug
