@@ -30,6 +30,12 @@ namespace myalgoritm
         void QuickSort(int arr[],int n);
         void __qiucksort(int arr[],int l,int r);
         int __partition(int arr[],int l,int r);
+
+        //堆排序
+        void heapSort(int arr[],int n);
+        void __sink(int arr[],int k,int n);
+        void __exch(int arr[],int i,int j);
+        bool __less(int arr[],int i,int j);
     };
     
 } // namespace algoritm

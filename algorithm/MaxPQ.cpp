@@ -33,7 +33,7 @@ namespace myalgoritm{
     void MaxPQ::sink(int k) {
         while(2*k <= _n){
             int j = 2*k;
-            if(j <= _n && (_pq[j] < _pq[j+1]))
+            if(j < _n && (_pq[j] < _pq[j+1]))
                 j++;
             if(_pq[k] > _pq[j])
                 break;

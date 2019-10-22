@@ -38,24 +38,21 @@ int main() {
     for(int i = 0;i < 100;++i)
     {
         int nrand = (random() % 100 )+ 51;
-  //      arr[i] = nrand;
-        maxPQ->insert(nrand);
+        arr[i] = nrand;
+  //      maxPQ->insert(nrand);
     }
     //TEST MAXPQ
-    for(int i = 0;i < 100;++i)
-    {
-        std::cout << maxPQ->delMax() << std::endl;
-    }
+    sort1->heapSort(arr,100);
 //    arrPrint(arr,100);
 //
 //
 //    sort1->MergeSort(arr,100);
-//    if(IsSort(arr,100))
-//        std::cout<< " is sort" << std::endl;
-//    else
-//        std::cout<< " is not sort" << std::endl;
+    if(IsSort(arr,100))
+        std::cout<< " is sort" << std::endl;
+    else
+        std::cout<< " is not sort" << std::endl;
 
-   // arrPrint(arr,100);
+   arrPrint(arr,100);
 
 
 
