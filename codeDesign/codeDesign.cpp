@@ -3,10 +3,17 @@
 
 #include "pch.h"
 #include <iostream>
-
+#include "beverage.h"
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n"; 
+    CBeverage *beverage = new Espress();
+    cout << beverage->getDescription() << "   price:" << beverage->cost() << endl;
+    beverage = new Mocha(beverage);
+    cout << "desc:"<<beverage->getDescription() << "   price:" << beverage->cost() << endl;
+    beverage = new Mocha(beverage);
+    cout << "desc:"<<beverage->getDescription() << "   price:" << beverage->cost() << endl;
+    
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

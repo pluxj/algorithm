@@ -11,7 +11,7 @@ public:
 	}
 	~CBeverage() {}
 
-	std::string getDescription()
+	virtual std::string getDescription()
 	{
 		return strDesc_;
 	}
@@ -24,21 +24,93 @@ private:
 
 };
 
-//调料
-class Condiment :public CBeverage
+//调料装饰器
+class CondimentDecorator :public CBeverage
 {
 public:
-	Condiment()
+	CondimentDecorator()
 	{
 		strDesc_ = "Condiment";
 	}
-	~Condiment() {}
+	~CondimentDecorator() {}
 
-	std::string getDescription()
-	{
-		return strDesc_;
-	}
+	virtual std::string getDescription() = 0;
 	
 private:
 	std::string strDesc_;
 };
+
+//Espress 饮料
+class Espress : public CBeverage
+{
+public:
+	Espress()
+	{
+		strDesc_ = "Espress";
+	}
+	~Espress() {}
+	
+	virtual std::string getDescription()
+	{
+		return strDesc_;
+	}
+	virtual double cost()
+	{
+		return 1.99;
+	}
+private:
+	std::string strDesc_;
+};
+
+//HouseBlend 饮料
+class HouseBlend:public CBeverage
+{
+	public:
+	HouseBlend()
+	{
+		strDesc_ = "Mocha";
+	}
+	~HouseBlend() {}
+
+	virtual std::string getDescription()
+	{
+		return strDesc_;
+	}
+	virtual double cost()
+	{
+		return 0.99;
+	}
+	private:
+	std::string strDesc_;
+};
+
+//mocha 调料
+class Mocha :public CondimentDecorator
+{
+public:
+	Mocha(CBeverage *beverage)
+	{
+		pbeverage_ = beverage;
+	}
+	~Mocha (){
+
+	}
+	virtual std::string getDescription()
+	{
+		return pbeverage_->getDescription() + ",Mocha";
+	}
+	virtual double cost()
+	{
+		return 0.20 + pbeverage_->cost();
+	}
+
+
+private:
+	CBeverage *pbeverage_;
+};
+
+
+
+
+
+
