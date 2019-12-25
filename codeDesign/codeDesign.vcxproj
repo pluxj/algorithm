@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="beverage.h" />
+    <ClInclude Include="observe.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
