@@ -3,5 +3,6 @@
         "type_traits": "cpp",
         "vector": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "remote.SSH.showLoginTerminal": true
 }
