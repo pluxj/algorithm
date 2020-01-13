@@ -1,9 +1,10 @@
-﻿// codeDesign.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+// codeDesign.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
 #include "pch.h"
 #include <iostream>
 #include "beverage.h"
+#include "command.h"
 using namespace std;
 int main()
 {
@@ -14,6 +15,14 @@ int main()
     beverage = new Mocha(beverage);
     cout << "desc:"<<beverage->getDescription() << "   price:" << beverage->cost() << endl;
     
+
+	//COMMAND DESIGN
+	/*CLight light;
+	CLightOnCommand lightCommand(&light);
+	CButton button;
+	button.SetCommand(&lightCommand);
+	button.Press();*/
+	system("pause");
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
