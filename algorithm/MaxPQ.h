@@ -16,10 +16,10 @@ namespace myalgoritm {
         ~MaxPQ();
 
         bool isEmpty(){
-            return _n == 0;
+            return n_ == 0;
         };
         int size(){
-            return _n;
+            return n_;
         };
         void insert(int v);
         int delMax();
@@ -30,9 +30,9 @@ namespace myalgoritm {
         void sink(int k);
 
     private:
-        int _n;
-        int _max;
-        int * _pq;
+        int n_;
+        int max_;
+        int * pq_;
     };
 }
 

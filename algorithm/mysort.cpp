@@ -1,5 +1,5 @@
 #include "mysort.h"
-
+#include "stdlib.h"
 namespace myalgoritm
 {
     void CSort::Selection(vector<int> arr)  
@@ -41,7 +41,7 @@ namespace myalgoritm
         //进行归并
 
       int j = mid+1;
-      int aux[r-l+1];
+      int *aux = new int[r-l+1];
       for( int i = l;i <= r;++i)
           aux[i-l] = arr[i];
 

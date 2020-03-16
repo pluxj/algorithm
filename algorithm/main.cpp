@@ -8,6 +8,7 @@
 #include "mysort.h"
 #include "SortTest.h"
 #include "MaxPQ.h"
+#include "stdlib.h"
 using namespace std;
 using namespace myalgoritm;
 void arrPrint(int arr[],int n){
@@ -37,7 +38,7 @@ int main() {
 
     for(int i = 0;i < 100;++i)
     {
-        int nrand = (random() % 100 )+ 51;
+        int nrand = (rand() % 100 )+ 51;
         arr[i] = nrand;
   //      maxPQ->insert(nrand);
     }

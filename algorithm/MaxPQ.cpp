@@ -5,39 +5,39 @@
 #include "MaxPQ.h"
 using namespace std;
 namespace myalgoritm{
-    MaxPQ::MaxPQ(int maxN):_n(0) {
-        _pq = new int[maxN+1];
-        _max = maxN+1;
+    MaxPQ::MaxPQ(int maxN):n_(0) {
+        pq_ = new int[maxN+1];
+        max_ = maxN+1;
     }
-    MaxPQ::MaxPQ():_n(0),_pq(nullptr),_max(0) {
+    MaxPQ::MaxPQ():n_(0),pq_(nullptr),max_(0) {
 
     }
     int MaxPQ::delMax() {
-        int max = _pq[1];
-        swap(_pq[_n--],_pq[1]);
-        _pq[_n+1] = NULL;
+        int max = pq_[1];
+        swap(pq_[n_--],pq_[1]);
+        pq_[n_+1] = NULL;
         sink(1);
-        if(_n < _max /2)
-            resize(_max/2);
+        if(n_ < max_ /2)
+            resize(max_/2);
         return max;
     }
 
     void MaxPQ::insert(int v ) {
-        if(_n >= _max)
-            resize(2*_max + 1);
-        _pq[++_n] = v;
-        swim(_n);
+        if(n_ >= max_)
+            resize(2*max_ + 1);
+        pq_[++n_] = v;
+        swim(n_);
 
     }
 
     void MaxPQ::sink(int k) {
-        while(2*k <= _n){
+        while(2*k <= n_){
             int j = 2*k;
-            if(j < _n && (_pq[j] < _pq[j+1]))
+            if(j < n_ && (pq_[j] < pq_[j+1]))
                 j++;
-            if(_pq[k] > _pq[j])
+            if(pq_[k] > pq_[j])
                 break;
-            swap(_pq[k],_pq[j]);
+            swap(pq_[k],pq_[j]);
             k = j;
 
         }
@@ -45,20 +45,20 @@ namespace myalgoritm{
 
     void MaxPQ::resize(int max) {
         int *pq = new int[max];
-        for(int i = 1;i <= _n; i++)
-            pq[i] = _pq[i];
-        delete _pq;
-        _pq = pq;
+        for(int i = 1;i <= n_; i++)
+            pq[i] = pq_[i];
+        delete pq_;
+        pq_ = pq;
         pq = nullptr;
-        _max = max;
+        max_ = max;
     }
 
     void MaxPQ::swim(int k) {
         while(k > 1 ){
-            if(_pq[k/2] > _pq[k])
+            if(pq_[k/2] > pq_[k])
                 break;
 
-            swap(_pq[k/2],_pq[k]);
+            swap(pq_[k/2],pq_[k]);
             k = k /2;
 
         }
