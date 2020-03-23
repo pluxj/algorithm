@@ -1,0 +1,14 @@
+algorithm/.idea
+algorithm/cmake-build-debug
+*.vcxproj
+*.sln
+*.user
+.gitignore
+*.ipch
+*.suo
+*.db
+*.code-workspace
+*.DS_Store
+*.xml
+*.cbp
+cmake-build-debug/*

@@ -1,5 +1,5 @@
 #include "mysort.h"
-
+#include "stdlib.h"
 namespace myalgoritm
 {
     void CSort::Selection(vector<int> arr)  
@@ -41,7 +41,7 @@ namespace myalgoritm
         //进行归并
 
       int j = mid+1;
-      int aux[r-l+1];
+      int *aux = new int[r-l+1];
       for( int i = l;i <= r;++i)
           aux[i-l] = arr[i];
 
@@ -129,5 +129,40 @@ namespace myalgoritm
         }
         swap(arr[l],arr[j]);
         return j;
+    }
+
+
+    void CSort::heapSort(int *arr, int n) {
+        for(int k = n/2;k>=1;k--){
+            __sink(arr,k,n);
+        }
+
+            while(n > 1) {
+                __exch(arr,1,n--);
+                __sink(arr,1,n);
+            }
+    }
+
+    void CSort::__sink(int *arr,int  k,int  n) {
+       while(2*k <= n)
+       {
+           int j = 2*k;
+          if(j < n && __less(arr,j,j+1))
+              j++;
+          if(!__less(arr,k,j))
+              break;
+          __exch(arr,k,j);
+          k = j;
+       }
+    }
+
+    void CSort::__exch(int *arr, int i, int j) {
+        swap(arr[i-1],arr[j-1]);
+    }
+
+    bool CSort::__less(int *arr, int i, int j) {
+        if(arr[i-1] < arr[j-1])
+            return true;
+        return false;
     }
 } // namespace myalgoritm
