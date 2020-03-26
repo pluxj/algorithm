@@ -20,7 +20,7 @@
 
 using namespace std;
 using namespace rapidjson;
-#define MAXLINE 1024
+#define MAXLINE 10
 #define OPEN_MAX 100
 #define LISTENQ 20
 #define SERV_PORT 5000
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     int i, maxi, listenfd, connfd, sockfd,epfd,nfds, portnumber;
     ssize_t n;
     char line[MAXLINE];
-    socklen_t clilen;
+   
 
 
     if ( 2 == argc )
@@ -83,6 +83,7 @@ int main(int argc, char* argv[])
 
     epfd=epoll_create(256);
     struct sockaddr_in clientaddr;
+	socklen_t clilen = sizeof(clientaddr);
     struct sockaddr_in serveraddr;
     listenfd = socket(AF_INET, SOCK_STREAM, 0);
     //把socket设置为非阻塞方式
@@ -145,10 +146,12 @@ int main(int argc, char* argv[])
             else if(events[i].events&EPOLLIN)//如果是已经连接的用户，并且收到数据，那么进行读入。
 
             {
+				memset(line, 0, MAXLINE);
                 cout << "EPOLLIN" << endl;
                 if ( (sockfd = events[i].data.fd) < 0)
                     continue;
-                if ( (n = read(sockfd, line, MAXLINE)) < 0) {
+                if ( (n = read(sockfd, line, MAXLINE-1)) < 0) {
+					cout << "read < 0" << "\n";
                     if (errno == ECONNRESET) {
                         close(sockfd);
                         events[i].data.fd = -1;
@@ -158,7 +161,11 @@ int main(int argc, char* argv[])
                     close(sockfd);
                     events[i].data.fd = -1;
                 }
-				strMsg.append(line);
+				line[n] = '\0';
+				cout << "line:" << line << "\n";
+				/*strMsg.append(line);*/
+				strMsg += line;
+				cout << "strMsg" << strMsg << "\n";
 				if (strMsg.find_first_of("W{") != std::string::npos) {
 					int iStart = strMsg.find_first_of("W{");
 					int iEnd = strMsg.find_first_of("}QUIT");
@@ -168,6 +175,7 @@ int main(int argc, char* argv[])
 						strMsg = strMsg.substr(iEnd + 5);
 					}
 				}
+				
                 ////设置用于写操作的文件描述符
 
                 //ev.data.fd=sockfd;

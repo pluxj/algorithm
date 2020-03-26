@@ -10,6 +10,7 @@
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+#include <unistd.h>
 
 using namespace std;
 using namespace rapidjson;
@@ -65,6 +66,10 @@ int main(int argc, const char * argv[])
 			memcpy(reply_msg, strMsg.c_str(), strMsg.length());
 			if (send(server_socket, reply_msg, 1024, 0) == -1) {
 				perror("send error");
+			}
+			if (icount > 1) {
+				close(server_socket);
+				break;
 			}
 		}
 

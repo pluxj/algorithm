@@ -89,7 +89,7 @@ int main() {
 	while (1) {
 		bzero(recv_msg, 1024);
 
-		long byte_num = recv(client_socket, recv_msg, 1024, 0);
+		long byte_num = recv(client_socket, recv_msg, 10, 0);
 		if (byte_num = 0) {
 			std::cout << "client exit" << "\n";
 			break;
@@ -108,7 +108,7 @@ int main() {
 				strMsg = strMsg.substr(iEnd + 5);
 			}
 		}
-
+		usleep(30);
 	}
 	std::cout << "proc exit" << "\n";
 	return 0;
