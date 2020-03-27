@@ -9,4 +9,5 @@
 *.DS_Store
 *.xml
 *.cbp
-cmake-build-debug
+*.o
+*/cmake-build-debug/*

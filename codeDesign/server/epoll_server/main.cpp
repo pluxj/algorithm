@@ -144,13 +144,12 @@ int main(int argc, char* argv[])
                 epoll_ctl(epfd,EPOLL_CTL_ADD,connfd,&ev);
             }
             else if(events[i].events&EPOLLIN)//如果是已经连接的用户，并且收到数据，那么进行读入。
-
             {
 				memset(line, 0, MAXLINE);
                 cout << "EPOLLIN" << endl;
                 if ( (sockfd = events[i].data.fd) < 0)
                     continue;
-                if ( (n = read(sockfd, line, MAXLINE-1)) < 0) {
+                if ( (n = read(sockfd, line, MAXLINE)) < 0) {
 					cout << "read < 0" << "\n";
                     if (errno == ECONNRESET) {
                         close(sockfd);
@@ -158,10 +157,11 @@ int main(int argc, char* argv[])
                     } else
                         std::cout<<"readline error"<<std::endl;
                 } else if (n == 0) {
+                    cout << "client:fd:"<< sockfd << "exit \n";
                     close(sockfd);
                     events[i].data.fd = -1;
                 }
-				line[n] = '\0';
+				 line[n] = '\0';
 				cout << "line:" << line << "\n";
 				/*strMsg.append(line);*/
 				strMsg += line;

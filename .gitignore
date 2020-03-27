@@ -11,4 +11,5 @@ algorithm/cmake-build-debug
 *.DS_Store
 *.xml
 *.cbp
+*.o
 cmake-build-debug/*

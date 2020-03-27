@@ -59,22 +59,24 @@ int main(int argc, const char * argv[])
 	if (connect(server_socket, (struct sockaddr *)&server_addr, sizeof(struct sockaddr_in)) == 0) {
 		//connect 成功之后，其实系统将你创建的socket绑定到一个系统分配的端口上，且其为全相关，包含服务器端的信息，可以用来和服务器端进行通信。
 		while (1) {
-			
-
+			memset(reply_msg,0,1024);
+			cout << "for each" << "\n";
 			std::string strMsg = "";
 			SendMsg(strMsg);
 			memcpy(reply_msg, strMsg.c_str(), strMsg.length());
-			if (send(server_socket, reply_msg, 1024, 0) == -1) {
+			cout << reply_msg << "\n";
+			if (send(server_socket, reply_msg, strlen(reply_msg), 0) == -1) {
 				perror("send error");
 			}
-			if (icount > 1) {
-				close(server_socket);
-				break;
-			}
+			break;
 		}
 
 	}
-
+	else{
+		cout << " connect error" << "\n";
+		
+	}
+	close(server_socket);
 	// insert code here...
 	printf("Hello, World!\n");
 	return 0;
