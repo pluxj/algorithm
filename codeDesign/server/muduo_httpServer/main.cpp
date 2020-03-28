@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include "signal.h"
 #include <sys/stat.h>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
@@ -235,11 +236,14 @@ int main(int argc, char* argv[])
 	if (argc > 2)
 	{
 		port = atoi(argv[2]);
+		LOG_WARN << "argv[2]" << argv[2];
 	}
-	if (argc > 3 && argv[3] == "-D")
+	if (strlen(argv[3]) >= 2 && argv[3][1] == 'D')
 	{
-		daemonize();
+		LOG_WARN << "argv[3]" << argv[3];
+		daemonize();	
 	}
+
 	EventLoop loop;
 	HttpServer server(&loop, InetAddress(port), "httpServer",TcpServer::kReusePort);
 	server.setHttpCallback(onRequest);
