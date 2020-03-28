@@ -210,7 +210,17 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 	}
 }
 
-
+void daemonize()
+{
+	signal(SIGTTOU, SIG_IGN);
+	signal(SIGTTIN, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+	if (0 != fork()) exit(0);
+	if (-1 == setsid()) exit(0);
+	signal(SIGHUP, SIG_IGN);
+	if (0 != fork()) exit(0);
+	if (0 != chdir("/")) exit(0);
+}
 
 int main(int argc, char* argv[])
 {
@@ -225,6 +235,10 @@ int main(int argc, char* argv[])
 	if (argc > 2)
 	{
 		port = atoi(argv[2]);
+	}
+	if (argc > 3 && argv[3] == "-D")
+	{
+		daemonize();
 	}
 	EventLoop loop;
 	HttpServer server(&loop, InetAddress(port), "httpServer",TcpServer::kReusePort);
