@@ -227,7 +227,7 @@ int main(int argc, char* argv[])
 		port = atoi(argv[2]);
 	}
 	EventLoop loop;
-	HttpServer server(&loop, InetAddress(port), "httpServer");
+	HttpServer server(&loop, InetAddress(port), "httpServer",TcpServer::kReusePort);
 	server.setHttpCallback(onRequest);
 	server.setThreadNum(numThreads);
 	server.start();
