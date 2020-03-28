@@ -173,6 +173,7 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 	}
 	else if (req.path() == "/makefile")
 	{
+		LOG_WARN << "makefile";
 		int filefd = open("./makefile", O_RDONLY);
 		if (filefd == -1)
 		{
