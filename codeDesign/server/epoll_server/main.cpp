@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
 {
     int i, maxi, listenfd, connfd, sockfd,epfd,nfds, portnumber;
     ssize_t n;
-    char line[MAXLINE];
+    char line[MAXLINE+1];
    
 
 
@@ -162,7 +162,7 @@ int main(int argc, char* argv[])
                     events[i].data.fd = -1;
                 }
 				 line[n] = '\0';
-				cout << "line:" << line << "\n";
+				cout << "line:" << line <<"\n readn:"<<n<< "\n";
 				/*strMsg.append(line);*/
 				strMsg += line;
 				cout << "strMsg" << strMsg << "\n";

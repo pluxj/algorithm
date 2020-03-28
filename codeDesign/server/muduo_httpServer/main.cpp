@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
@@ -169,6 +170,36 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 		resp->setContentType("text/plain");
 		resp->addHeader("Server", "Muduo");
 		resp->setBody("hello, world!\n");
+	}
+	else if (req.path() == "/makefile")
+	{
+		int filefd = open("./makefile", O_RDONLY);
+		if (filefd == -1)
+		{
+			resp->setStatusCode(HttpResponse::k200Ok);
+			resp->setStatusMessage("open file error");
+			resp->setContentType("text/plain");
+			resp->addHeader("Server", "Muduo");
+			resp->setBody("open file error!\n");
+		}
+		char fileBuf[1024];
+		memset(fileBuf, 0, 1024);
+		string strBuf = "";
+		while (1)
+		{
+			int n = read(filefd, fileBuf, 1023);
+			if (n > 0)
+			{
+				fileBuf[n] = '\0';
+				strBuf += fileBuf;
+			}
+			break;
+		}
+		resp->setStatusCode(HttpResponse::k200Ok);
+		resp->setStatusMessage("open file error");
+		resp->setContentType("text/plain");
+		resp->addHeader("Server", "Muduo");
+		resp->setBody(strBuf);
 	}
 	else
 	{

@@ -153,6 +153,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\muduo\base\AsyncLogging.h" />
+    <ClInclude Include="include\muduo\base\Atomic.h" />
+    <ClInclude Include="include\muduo\base\BlockingQueue.h" />
+    <ClInclude Include="include\muduo\base\BoundedBlockingQueue.h" />
+    <ClInclude Include="include\muduo\base\Condition.h" />
+    <ClInclude Include="include\muduo\base\copyable.h" />
+    <ClInclude Include="include\muduo\base\CountDownLatch.h" />
+    <ClInclude Include="include\muduo\base\CurrentThread.h" />
+    <ClInclude Include="include\muduo\base\Date.h" />
+    <ClInclude Include="include\muduo\base\Exception.h" />
+    <ClInclude Include="include\muduo\base\FileUtil.h" />
+    <ClInclude Include="include\muduo\base\GzipFile.h" />
+    <ClInclude Include="include\muduo\base\LogFile.h" />
+    <ClInclude Include="include\muduo\base\Logging.h" />
+    <ClInclude Include="include\muduo\base\LogStream.h" />
+    <ClInclude Include="include\muduo\base\Mutex.h" />
+    <ClInclude Include="include\muduo\base\noncopyable.h" />
+    <ClInclude Include="include\muduo\base\ProcessInfo.h" />
+    <ClInclude Include="include\muduo\base\Singleton.h" />
+    <ClInclude Include="include\muduo\base\StringPiece.h" />
+    <ClInclude Include="include\muduo\base\Thread.h" />
+    <ClInclude Include="include\muduo\base\ThreadLocal.h" />
+    <ClInclude Include="include\muduo\base\ThreadLocalSingleton.h" />
+    <ClInclude Include="include\muduo\base\ThreadPool.h" />
+    <ClInclude Include="include\muduo\base\Timestamp.h" />
+    <ClInclude Include="include\muduo\base\TimeZone.h" />
+    <ClInclude Include="include\muduo\base\Types.h" />
+    <ClInclude Include="include\muduo\base\WeakCallback.h" />
+    <ClInclude Include="include\muduo\net\Buffer.h" />
+    <ClInclude Include="include\muduo\net\Callbacks.h" />
+    <ClInclude Include="include\muduo\net\Channel.h" />
+    <ClInclude Include="include\muduo\net\Endian.h" />
+    <ClInclude Include="include\muduo\net\EventLoop.h" />
+    <ClInclude Include="include\muduo\net\EventLoopThread.h" />
+    <ClInclude Include="include\muduo\net\EventLoopThreadPool.h" />
+    <ClInclude Include="include\muduo\net\http\HttpContext.h" />
+    <ClInclude Include="include\muduo\net\http\HttpRequest.h" />
+    <ClInclude Include="include\muduo\net\http\HttpResponse.h" />
+    <ClInclude Include="include\muduo\net\http\HttpServer.h" />
+    <ClInclude Include="include\muduo\net\InetAddress.h" />
+    <ClInclude Include="include\muduo\net\inspect\Inspector.h" />
+    <ClInclude Include="include\muduo\net\TcpClient.h" />
+    <ClInclude Include="include\muduo\net\TcpConnection.h" />
+    <ClInclude Include="include\muduo\net\TcpServer.h" />
+    <ClInclude Include="include\muduo\net\TimerId.h" />
     <ClInclude Include="include\rapidjson\allocators.h" />
     <ClInclude Include="include\rapidjson\cursorstreamwrapper.h" />
     <ClInclude Include="include\rapidjson\document.h" />
@@ -195,6 +240,7 @@
     <ClCompile Include="main\codeDesign.cpp" />
     <ClCompile Include="server\epoll_server\main.cpp" />
     <ClCompile Include="server\main.cpp" />
+    <ClCompile Include="server\muduo_httpServer\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
