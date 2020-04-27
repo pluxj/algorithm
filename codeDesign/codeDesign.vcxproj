@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -234,13 +234,17 @@
     <ClInclude Include="include\rapidjson\stream.h" />
     <ClInclude Include="include\rapidjson\stringbuffer.h" />
     <ClInclude Include="include\rapidjson\writer.h" />
+    <ClInclude Include="server\muduo_httpServer\base_interface.h" />
+    <ClInclude Include="server\muduo_httpServer\router.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="client\main.cpp" />
     <ClCompile Include="main\codeDesign.cpp" />
     <ClCompile Include="server\epoll_server\main.cpp" />
     <ClCompile Include="server\main.cpp" />
+    <ClCompile Include="server\muduo_httpServer\base_interface.cpp" />
     <ClCompile Include="server\muduo_httpServer\main.cpp" />
+    <ClCompile Include="server\muduo_httpServer\router.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
