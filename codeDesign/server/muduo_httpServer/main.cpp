@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include "signal.h"
 #include <sys/stat.h>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
@@ -22,6 +23,7 @@
 #include "muduo/net/http/HttpRequest.h"
 #include "muduo/net/http/HttpResponse.h"
 #include "muduo/net/EventLoop.h"
+#include "muduo/base/AsyncLogging.h"
 #include "muduo/base/Logging.h"
 
 #include <iostream>
@@ -173,6 +175,7 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 	}
 	else if (req.path() == "/makefile")
 	{
+		LOG_WARN << "makefile";
 		int filefd = open("./makefile", O_RDONLY);
 		if (filefd == -1)
 		{
@@ -193,8 +196,10 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 				fileBuf[n] = '\0';
 				strBuf += fileBuf;
 			}
-			break;
+			else
+				break;
 		}
+		close(filefd);
 		resp->setStatusCode(HttpResponse::k200Ok);
 		resp->setStatusMessage("open file error");
 		resp->setContentType("text/plain");
@@ -209,24 +214,61 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 	}
 }
 
+void daemonize()
+{
+	signal(SIGTTOU, SIG_IGN);
+	signal(SIGTTIN, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+	if (0 != fork()) exit(0);
+	if (-1 == setsid()) exit(0);
+	signal(SIGHUP, SIG_IGN);
+	if (0 != fork()) exit(0);
+//	if (0 != chdir("/")) exit(0);
+}
 
+int kRollSize = 500 * 1000 * 1000;
+
+std::unique_ptr<muduo::AsyncLogging> g_asyncLog;
+
+void asyncOutput(const char* msg, int len)
+{
+	g_asyncLog->append(msg, len);
+}
+
+void setLogging(const char* argv0)
+{
+	muduo::Logger::setOutput(asyncOutput);
+	char name[256];
+	strncpy(name, argv0, 256);
+	g_asyncLog.reset(new muduo::AsyncLogging(::basename(name), kRollSize));
+	g_asyncLog->start();
+}
 
 int main(int argc, char* argv[])
 {
 	int numThreads = 0;
 	int port = 8000;
+	
 	if (argc > 1)
 	{
 		benchmark = true;
+		
 		Logger::setLogLevel(Logger::WARN);
 		numThreads = atoi(argv[1]);
 	}
 	if (argc > 2)
 	{
 		port = atoi(argv[2]);
+		LOG_WARN << "argv[2]" << argv[2];
 	}
+	if (argc > 3 && argv[3][1] == 'D')
+	{
+		LOG_WARN << "argv[3]" << argv[3];
+		daemonize();	
+	}
+	setLogging(argv[0]);
 	EventLoop loop;
-	HttpServer server(&loop, InetAddress(port), "httpServer");
+	HttpServer server(&loop, InetAddress(port), "httpServer",TcpServer::kReusePort);
 	server.setHttpCallback(onRequest);
 	server.setThreadNum(numThreads);
 	server.start();
