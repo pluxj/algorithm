@@ -1,5 +1,6 @@
 #include "mysort.h"
 #include "stdlib.h"
+#include <algorithm>
 namespace myalgoritm
 {
     void CSort::Selection(vector<int> arr)  
@@ -36,41 +37,48 @@ namespace myalgoritm
     void CSort::MergeSort(int *arr, int n) {
         __mergeSort(arr,0,n-1);
     }
-
+    
     void CSort::__merge(int *arr, int l,int mid, int r) {
         //进行归并
 
-      int j = mid+1;
-      int *aux = new int[r-l+1];
-      for( int i = l;i <= r;++i)
-          aux[i-l] = arr[i];
+
+      int * aux = new int[r-l+1];
+      for( int i = 0;i < r-l+1;++i)
+          aux[i] = arr[i+l];
 
 
-      int i = l;
-      for(int k = l;k <=r;++k)
+      int i = 0;
+      int auxmid = mid - l;
+      int j = auxmid+1;
+
+      for(int k = 0;k <r-l+1;++k)
       {
-          if(i > mid)
+          if(i > auxmid)
           {
-              arr[k] = aux[j-l];
+              arr[k+l] = aux[j];
               j++;
           }
-          else if(j > r)
+          else if(j > r-l)
           {
-              arr[k] = aux[i-l];
+              arr[k+l] = aux[i];
               i++;
           }
-         else if(aux[i-l] > aux[j-l])
+         else if(aux[i] > aux[j])
           {
-              arr[k] = aux[j-l];
+              arr[k+l] = aux[j];
               j++;
           }
          else
           {
-             arr[k] = aux[i-l];
+             arr[k+l] = aux[i];
              i++;
           }
       }
-
+        for(int i = 0;i < r-l+1;i++)
+        {
+            std::cout<< "arr[" <<  i<<"]" << "= " << arr[i] << " ";
+        }
+        std::cout << "\n";
     }
 
     void CSort::__mergeSort(int *arr, int l, int r) {
@@ -78,14 +86,50 @@ namespace myalgoritm
         if(l >= r)
             return;
         int mid = l + (r-l)/2;
+
         __mergeSort(arr,l,mid);
         __mergeSort(arr,mid+1,r);
             __merge(arr,l,mid,r);
     }
 
+    //自顶向下
+    void CSort::MergeSortT(int *arr, int n) {
+        int *aux = new int[n]{0};
+        __mergeSortT(arr,0,n-1,aux);
+    }
+
+    void CSort::__mergeT(int *arr, int l, int mid, int r, int *aux)  {
+        //进行归并
+
+
+      int i = l,j=mid+1;
+      for(int k = l;k<=r;++k)
+      {
+          aux[k] = arr[k];
+      }
+      for(int k = l;k<=r;k++)
+      {
+          if(i>mid) arr[k] = aux[j++];
+          else if(j>r) arr[k] = aux[i++];
+          else if(aux[i] > aux[j]) arr[k] = aux[j++];
+          else arr[k] = aux[i++];
+      }
+    }
+
+    void CSort::__mergeSortT(int *arr, int l, int r, int *aux) {
+
+        if(r <= l)
+            return;
+        int mid = l + (r-l)/2;
+        __mergeSortT(arr,l,mid,aux);
+        __mergeSortT(arr,mid+1,r,aux);
+        //__mergeT(arr,l,mid,r,aux);
+        __merge(arr,l,mid,r);
+    }
+
     //自底向上
     void CSort::mergeSortBU(int *arr, int n) {
-        for(int sz = 1;sz <=n ;sz += sz)
+        for(int sz = 1;sz <n ;sz += sz)
             for(int i = 0;i+sz<n;i+=sz+sz)
                 __merge(arr,i,i+sz,min(i+2*sz-1,n-1));
     }

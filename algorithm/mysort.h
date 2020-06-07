@@ -22,6 +22,9 @@ namespace myalgoritm
         void __mergeSort(int arr[],int l,int r);
         void __merge(int arr[],int l,int mid,int r);
 
+        void MergeSortT(int arr[],int n);
+        void __mergeSortT(int arr[],int l,int r,int aux[]);
+        void __mergeT(int arr[],int l,int mid,int r,int aux[]);
         //自底向上
         void mergeSortBU(int arr[],int n);
 
