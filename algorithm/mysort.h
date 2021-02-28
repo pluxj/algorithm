@@ -13,9 +13,9 @@ namespace myalgoritm
         CSort() {}
         ~CSort() {}
         //选择排序
-        void Selection(vector<int> arr);
+        void Selection(int* arr,int n);
         //插入排序
-        void Insertion(vector<int> arr);
+        void Insertion(int* arr,int n);
 
         //自顶向下的归并排序
         void MergeSort(int arr[],int n);
