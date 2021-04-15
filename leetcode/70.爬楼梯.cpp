@@ -13,6 +13,28 @@ public:
        return (int)round(fibn/sqrt5);
 
     }
+    int climbStairs2(int n) {
+       if(n == 1)
+       {
+           return 1;
+       }
+       if(n == 2)
+       {
+           return 2;
+       }
+       int f1 = 1;
+       int f2 = 2;
+       int fn = 0;
+       while(n>2)
+       {
+           n--;
+           fn = f1 + f2;
+           f1 = f2;
+           f2 = fn;
+       }
+       return fn;
+
+    }
 };
 // @lc code=end
 
