@@ -3,13 +3,13 @@
 #include <algorithm>
 namespace myalgoritm
 {
-    void CSort::Selection(vector<int> arr)  
+    void CSort::Selection(int* arr,int n)
     {
-        int N = arr.size();
-        for(int i = 0 ; i < N; ++i)
+
+        for(int i = 0 ; i < n; ++i)
         {
             int min = i;
-            for(int j = i+1;j < N ;++j)
+            for(int j = i+1;j < n ;++j)
             {
                 if(arr[j] < arr[min])
                 {
@@ -20,9 +20,9 @@ namespace myalgoritm
         }
     }
 
-    void CSort::Insertion(vector<int> arr)
+    void CSort::Insertion(int* arr,int n)
     {
-        for(int i = 1;i < arr.size();++i)
+        for(int i = 1;i < n;++i)
         {
             for(int j = i;j > 0;--j)
             {
@@ -74,11 +74,6 @@ namespace myalgoritm
              i++;
           }
       }
-        for(int i = 0;i < r-l+1;i++)
-        {
-            std::cout<< "arr[" <<  i<<"]" << "= " << arr[i] << " ";
-        }
-        std::cout << "\n";
     }
 
     void CSort::__mergeSort(int *arr, int l, int r) {
@@ -130,8 +125,10 @@ namespace myalgoritm
     //自底向上
     void CSort::mergeSortBU(int *arr, int n) {
         for(int sz = 1;sz <n ;sz += sz)
-            for(int i = 0;i+sz<n;i+=sz+sz)
-                __merge(arr,i,i+sz,min(i+2*sz-1,n-1));
+            for(int i = 0;i+sz<n;i+=sz+sz) {
+                std::cout << i << "," << i + sz << "," << min(i + 2 * sz - 1, n - 1) << "\n";
+                __merge(arr, i, i + sz-1, min(i + 2 * sz - 1, n - 1));
+            }
     }
 
 

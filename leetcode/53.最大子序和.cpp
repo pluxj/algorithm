@@ -8,10 +8,11 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int pre = 0,maxAns = nums[0];
-        for(const auto &x : nums)
+        int pre=0;
+        int maxAns=nums[0];
+        for(int i = 0; i< nums.size();i++)
         {
-            pre = max(pre+x,x);
+            pre = max(pre+nums[i],nums[i]);
             maxAns = max(maxAns,pre);
         }
         return maxAns;
