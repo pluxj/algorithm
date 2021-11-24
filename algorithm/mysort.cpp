@@ -206,4 +206,6 @@ namespace myalgoritm
             return true;
         return false;
     }
+
+
 } // namespace myalgoritm

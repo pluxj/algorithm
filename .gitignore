@@ -12,4 +12,5 @@ algorithm/cmake-build-debug
 *.xml
 *.cbp
 *.o
+*/Debug
 cmake-build-debug/*
