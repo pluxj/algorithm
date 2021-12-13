@@ -5,8 +5,8 @@ typedef struct Node
 	int key;
 	int value;
 	Node* left;
-	Node* right;
-	int N; //以该节点位根的子数中的节点个数
+Node* right;
+	int N; 
 };
 
 class BSTree

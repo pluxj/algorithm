@@ -39,6 +39,12 @@ namespace myalgoritm
         void __sink(int arr[],int k,int n);
         void __exch(int arr[],int i,int j);
         bool __less(int arr[],int i,int j);
+
+        //非递归
+        int binarySearch(int arr[],int n,int target);
+        // 递归
+        int binarySearchD(int arr[],int n,int target);
+        int _binaryD(int arr[],int l,int r,int target);
     };
     
 } // namespace algoritm
