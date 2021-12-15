@@ -5,7 +5,7 @@ typedef struct Node
 	int key;
 	int value;
 	Node* left;
-Node* right;
+	Node* right;
 	int N; 
 };
 
