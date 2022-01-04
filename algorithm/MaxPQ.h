@@ -6,6 +6,12 @@
 #define MAXPQ_H
 
 #include <string>
+#include <assert.h>
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+
 namespace myalgoritm {
 
 
@@ -97,7 +103,7 @@ namespace myalgoritm {
         }
 
         int size() { return count_; }
-        bool isEmpty(){return count_ == 0}
+        bool isEmpty(){return count_ == 0;}
         //传入的i 对用户而言，是从0开始索引的
         void insert(int i, Item item)
         {

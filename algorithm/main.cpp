@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include "mysort.h"
+#include <algorithm>
 //#include "SortTest.h"
 #include "MaxPQ.h"
 #include "stdlib.h"
@@ -113,6 +114,14 @@ int main() {
     else{
         std::cout << "heapSort not sort" << "\n";
     }
+
+    MaxPQ maxpq(n);
+    for(int i = 0;i < n;i++)
+    {
+        maxpq.insert(i);
+    }
+    
+    
 
     delete[] arr;
 
